@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CKEditor_Test</title>
+    <meta charset="UTF-8">
+
+    <!-- 라이브러리 import 하는 파트, 경로는 사용자가 알맞게 따로 변경 -->
+    <!-- CKEditor.js import -->
+    <script src="./plugins/ckeditor/ckeditor.js"></script>
+</head>
+<style>
+    /* 에디터 관련 설정 */
+    .ck.ck-editor {
+        width: 50vw;
+    }
+
+    .ck-editor__editable {
+        height: 20vw;
+    }
+</style>
+
+<body>
+    <div id="classic">Testing...</div>
+    <button id="btn">Code Block!</button>
+    <p id="textplace"></p>
+    <script>
+        var localEditor; // 전역변수를 하나 선언해준다.
+
+        ClassicEditor
+            .create(document.querySelector('#classic'), {
+                //options
+                language: 'ko',
+            })
+            .then(editor => {
+                console.log(editor);
+                localEditor = editor; // editor 변수값(객체)을 전역변수에 담는다.
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        let btn = document.getElementById('btn');
+        btn.addEventListener('click', function() {
+            localEditor.execute('codeBlock', { language: 'javascript' })
+        });
+
+        // 복붙용 더미 데이터 (주석풀고 사용)
+
+        let btn = document.getElementById('btn');
+        btn.addEventListener('click', function() {
+            let data = localEditor.getData();
+            console.log(data);
+            let place = document.getElementById('textplace');
+            place.innerHTML = data;
+        });
+    </script>
+</body>
+
+</html>
