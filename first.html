@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CKEditor_Test</title>
+    <meta charset="UTF-8">
+
+<!-- 라이브러리 import 하는 파트, 경로는 사용자가 알맞게 따로 변경 -->
+    <!-- CKEditor.js import -->
+    <script src="./ckeditor.js"></script>
+</head>
+<style>
+		/* 에디터 관련 설정 */
+    .ck.ck-editor {
+        position: relative;
+        float: left;
+        width: 50vw;       
+    }
+
+    .ck-editor__editable {
+        height: 20vw;
+    }
+</style>
+
+<body>
+    <div id="classic">Testing...</div>
+    <script>
+
+        ClassicEditor
+            .create(document.querySelector('#classic'), {
+                language: 'ko', //언어설정
+            })
+            .then(editor => {
+								// 에디터 값 확인용 (F12 - console)
+                console.log(editor);
+								console.log('정상적인 동작');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    </script>
+</body>
+
+</html>
