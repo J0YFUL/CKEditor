@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CKEditor_Test</title>
+    <meta charset="UTF-8">
+
+    <!-- CKEditor.js import -->
+    <script src="./plugins/ckeditor/ckeditor.js"></script>
+    <!-- Highlight.js의 특정 테마 css 파일과 js 파일 import -->
+    <link rel="stylesheet" type="text/css" href="./plugins/highlight/agate.min.css">
+    <script src="./plugins/highlight/highlight.min.js"></script>
+</head>
+<style>
+    .container {
+        width: 100vw;
+    }
+
+    .ck.ck-editor {
+        position: relative;
+        float: left;
+        width: 50vw;
+    }
+
+    .ck-editor__editable {
+        height: 20vw;
+    }
+
+    #testfield {
+        position: relative;
+        float: left;
+        width: 49vw;
+        height: 22vw;
+        border: 2px solid black;
+        overflow: scroll;
+    }
+
+    #btn {
+        margin: 20px;
+        width: 200px;
+        height: 50px;
+        font-size: large;
+        border-radius: 8px;
+        background-color: peachpuff;
+        color: #333;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <textarea id="classic"></textarea>
+        <div id="testfield"></div>
+    </div>
+    <button id="btn">Print!</button>
+    <script>
+        var localEditor;
+        ClassicEditor
+            .create(document.querySelector('#classic'), {
+                language: 'ko', //언어설정
+            })
+            .then(editor => {
+                console.log(editor);
+                localEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function () {
+            let data = localEditor.getData();
+            console.log(data);
+            let textfield = document.getElementById('testfield')
+            textfield.innerHTML = data;
+            document.querySelectorAll('pre code').forEach((block) => {
+                console.log(block);
+                window.hljs.highlightBlock(block);
+            });
+        })
+    </script>
+</body>
+
+</html>
