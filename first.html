@@ -5,9 +5,9 @@
     <title>CKEditor_Test</title>
     <meta charset="UTF-8">
 
-<!-- 라이브러리 import 하는 파트, 경로는 사용자가 알맞게 따로 변경 -->
+    <!-- 라이브러리 import 하는 파트, 경로는 사용자가 알맞게 따로 변경 -->
     <!-- CKEditor.js import -->
-    <script src="./plugins/ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 </head>
 <style>
 		/* 에디터 관련 설정 */
@@ -31,7 +31,7 @@
                 language: 'ko', //언어설정
             })
             .then(editor => {
-								// 에디터 값 확인용 (F12 - console)
+
                 console.log(editor);
 								console.log('정상적인 동작');
             })
